@@ -6,13 +6,12 @@ void main()
   char label[10],opcode[10],operand[10],mnuem[10],code[10];
   int start,locctr,length;
   FILE *fp1,*fp2,*fp3,*fp4,*fp5;
-  fp1 = fopen("inputfile.txt","r");
+  fp1 = fopen("input.txt","r");
   fp2 = fopen("optab.txt","r");
-  fp3 = fopen("symTable.txt","w");
-  fp4 = fopen("intermediateFile.txt","w");
-  fp5 = fopen("programLength.txt","w");
+  fp3 = fopen("symtbl.txt","w");
+  fp4 = fopen("intermed.txt","w");
+  fp5 = fopen("pgm_length.txt","w");
   fscanf(fp1,"%s\t%s\t%s",label,opcode,operand);
-
   if(strcmp(opcode,"START")==0)
   {
     start = atoi(operand);
