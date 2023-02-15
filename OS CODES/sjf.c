@@ -1,3 +1,5 @@
+// NON PREEMPTIVE
+// TAT=BT+WT=CT-AT
 #include <stdio.h>
 #include <string.h>
 int takedetails();
@@ -51,7 +53,7 @@ void sjfsort(int num)
     {
         for (j = 0; j < num - i - 1; j++)
         {
-            if (p[j].bt > p[j + 1].bt)
+            if (p[j].at > p[j + 1].at)
             {
                 temp = p[j];
                 p[j] = p[j + 1];
@@ -63,7 +65,7 @@ void sjfsort(int num)
     {
         for (j = 0; j < num - i - 1; j++)
         {
-            if (p[j].bt == p[j + 1].bt && p[j].at > p[j + 1].at)
+            if (p[j].at == p[j + 1].at && p[j].bt > p[j + 1].bt)
             {
                 temp = p[j];
                 p[j] = p[j + 1];
@@ -72,6 +74,12 @@ void sjfsort(int num)
         }
     }
 }
-void sjfcalc(int num){
-    
+void sjfcalc(int num)
+{
+    int ct = 0;
+    for (i = 0; i < num; i++)
+    {
+        ct += p[0].bt;
+        if ()
+    }
 };
