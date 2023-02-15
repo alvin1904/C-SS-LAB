@@ -1,11 +1,9 @@
-// NON PREEMPTIVE
-// TAT=BT+WT=CT-AT
 #include <stdio.h>
 #include <string.h>
 int takedetails();
 void printtable(int num);
-void fcfssort(int num);
-void fcfcscalc(int num);
+void sjfsort(int num);
+void sjfcalc(int num);
 
 struct process
 {
@@ -17,9 +15,9 @@ void main()
     int num;
     num = takedetails();
     printtable(num);
-    fcfssort(num);
+    sjfsort(num);
     printtable(num);
-    fcfcscalc(num);
+    sjfcalc(num);
     printtable(num);
 }
 void printtable(int num)
@@ -46,14 +44,26 @@ int takedetails()
     }
     return num;
 }
-void fcfssort(int num)
+void sjfsort(int num)
 {
     int i, j;
     for (i = 0; i < num; i++)
     {
         for (j = 0; j < num - i - 1; j++)
         {
-            if (p[j].at > p[j + 1].at)
+            if (p[j].bt > p[j + 1].bt)
+            {
+                temp = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = temp;
+            }
+        }
+    }
+    for (i = 0; i < num; i++)
+    {
+        for (j = 0; j < num - i - 1; j++)
+        {
+            if (p[j].bt == p[j + 1].bt && p[j].at > p[j + 1].at)
             {
                 temp = p[j];
                 p[j] = p[j + 1];
@@ -62,24 +72,6 @@ void fcfssort(int num)
         }
     }
 }
-void fcfcscalc(int num)
-{
-    int i = 0, secs = 0, sum_wt = 0, sum_tat = 0;
-    p[0].wt = p[0].at;
-    p[0].ct = p[0].at + p[0].bt;
-    p[0].tat = p[0].bt + p[0].wt;
-    sum_wt += p[0].wt;
-    sum_tat += p[0].tat;
-    secs += p[0].ct;
-    for (i = 1; i < num; i++)
-    {
-        secs += p[i].bt;
-        p[i].ct = secs;
-        p[i].tat = secs - p[i].at;
-        p[i].wt = p[i].tat - p[i].bt;
-        sum_tat += p[i].tat;
-        sum_wt += p[i].wt;
-    }
-    float avg_tat = (float)sum_tat / num;
-    float avg_wt = (float)sum_wt / num;
-}
+void sjfcalc(int num){
+    
+};
